@@ -15,7 +15,7 @@ Furthermore, compared to Adaptive Diffusion Convolution (ADC)-style methods, CGD
 - Saturation-aware adaptivity: CGDConv introduces a principled, empirical convergence criterion based on the growth of nonzero entries in the diffusion kernel $\delta_t$, providing a more transparent and theoretically grounded stopping mechanism than truncations used in ADC.
 - Computational efficiency and pluggability: CGDConv avoids expensive optimization over kernel weights, making it computationally lightweight, but the ADC method model is highly coupled. This design allows CGDConv to serve as a plug-in diffusion layer compatible with diverse GNN architectures.
 
-**We agree that additional clarification on the motivation and role of FIFR would strengthen the presentation. In the revision, we will expand Section 3.2 (See Figure Re.1). We also demonstrate our method’s complexity analysis to reflect the uniqueness of the algorithm (See Figure Re.2).**
+**We agree that additional clarification on the motivation and role of FIFR would strengthen the presentation. In the revision, we will expand Section 3.2 (👉see Figure Re.1). We also demonstrate our method’s complexity analysis to reflect the uniqueness of the algorithm (👉see Figure Re.2).**
 
 Thank you again for pointing this out — your comment helps us better communicate our method.
 
@@ -29,7 +29,7 @@ Thank you again for pointing this out — your comment helps us better communica
   
 <img width="733" alt="image" src="https://github.com/user-attachments/assets/84b0985c-8fda-4171-b0dd-0321db669419" /></strong></div>
 
-# Q2&Q4: 
+# Q2: 
 While the paper provides a basic overview of the theoretical underpinnings of the method, it does not offer rigorous mathematical proof for the effectiveness or convergence of FIFR in the diffusion process. The lack of formal theoretical analysis diminishes the overall strength of the claims. Expanding this section with detailed derivations and justifications would significantly strengthen the paper. 
 
 The motivation for applying FIFR to this problem is not fully articulated, and a clearer explanation of its advantages would improve the paper. Additionally, more recent datasets and a wider range of evaluation metrics would strengthen the experimental validation.
@@ -38,7 +38,7 @@ The motivation for applying FIFR to this problem is not fully articulated, and a
 
 We thank the reviewer for pointing out the need for a more rigorous theoretical treatment of FIFR. We agree that beyond intuitive motivation, it is important to provide formal analysis to support its validity and convergence behavior.
 
-In response, we have included a dedicated analytical section titled "Interpretability of FIFR"(See Figure Re.1) in the appendix. This section provides formal definitions, derivations, and justifications, including a similarity-weighted diffusion operator, an alignment metric, and a discussion on convergence stability. As shown in Figure Re.1, these additions demonstrate that FIFR operates as a semantic-aware modulation mechanism while preserving the convergence behavior of the base diffusion process.
+In response, we have included a dedicated analytical section titled "Interpretability of FIFR"(👉**see Figure Re.1**) in the appendix. This section provides formal definitions, derivations, and justifications, including a similarity-weighted diffusion operator, an alignment metric, and a discussion on convergence stability. As shown in Figure Re.1, these additions demonstrate that FIFR operates as a semantic-aware modulation mechanism while preserving the convergence behavior of the base diffusion process.
 
 Thank you again for your constructive suggestion, which helped us significantly strengthen the theoretical soundness of our method.
 
@@ -46,7 +46,7 @@ Thank you again for your constructive suggestion, which helped us significantly 
 The experimental setup is comprehensive, but there are a few areas where additional considerations could enhance the results. For instance, the datasets used in the paper, while adequate, are somewhat small, and larger datasets (such as OGBN-Arxiv) could provide a more thorough evaluation of the method. Additionally, the authors could explore the impact of temporal factors, such as training time and inference speed, on model performance.
 
 # A3:
-We fully agree that evaluating on larger and more challenging datasets like OGB is important. In response, we attempted to run CGDConv on **OGB-arxiv**, and encountered a critical scalability bottleneck due to the size of the diffusion matrix. Specifically, computing the PPR-based diffusion matrix involves inverting a $169,343 \times 169,343$ adjacency matrix, which requires approximately ****118GB of memory****. This leads to a silent failure on standard hardware: the process terminates without error output, as shown in the attached runtime log (see Figure Re.3). The Python process exceeds the memory limit, the operating system will directly terminate the process without throwing a Python exception. The "adj matrix over" you see is the last successfully executed step, after which the process is killed by the system.
+We fully agree that evaluating on larger and more challenging datasets like OGB is important. In response, we attempted to run CGDConv on **OGB-arxiv**, and encountered a critical scalability bottleneck due to the size of the diffusion matrix. Specifically, computing the PPR-based diffusion matrix involves inverting a $169,343 \times 169,343$ adjacency matrix, which requires approximately **118GB of memory**. This leads to a silent failure on standard hardware: the process terminates without error output, as shown in the attached runtime log (👉**see Figure Re.3**). The Python process exceeds the memory limit, the operating system will directly terminate the process without throwing a Python exception. The "adj matrix over" you see is the last successfully executed step, after which the process is killed by the system.
 
 **This issue is not specific to our model.** It arises from the matrix inversion operation commonly used in diffusion-based models like GDC and ADC, which are also not scalable to such graph sizes without approximation. We acknowledge that handling large-scale graphs remains a crucial open challenge and plan to investigate efficient and scalable solutions (e.g., sparsified diffusion, Monte Carlo estimation) in future work.  
 
@@ -69,7 +69,7 @@ FIFR was chosen based on the following motivations:
 - FIFR introduces feature-aware routing that promotes message passing along semantically meaningful paths. This improves generalization in cases where topology alone is insufficient or misleading.
 - Unlike attention-based GNNs that modify structure per layer, FIFR directly reweights the diffusion kernel in a lightweight and scalable manner, preserving the benefits of global propagation while increasing selectivity.
 
-We acknowledge that in some benchmarks (e.g., Cora or Citeseer), the performance improvements appear moderate. We attribute this to the fact that these datasets are homophilic and already well-handled by existing methods. However, as shown in Table~3 and Table~4, CGDConv yields more substantial gains in challenging or heterophilic graphs, such as Chameleon, Squirrel, and Actor. This supports our claim that CGDConv (especially with FIFR) is most beneficial when structure and semantics are misaligned.
+We acknowledge that in some benchmarks (e.g., Cora or Citeseer), the performance improvements appear moderate. We attribute this to the fact that these datasets are homophilic and already well-handled by existing methods. However, as shown in Table3 and Table4, CGDConv yields more substantial gains in challenging or heterophilic graphs, such as Chameleon, Squirrel, and Actor. This supports our claim that CGDConv (especially with FIFR) is most beneficial when structure and semantics are misaligned.
 
 More details in **Figure Re.1**.
 
