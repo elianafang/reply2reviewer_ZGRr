@@ -69,7 +69,7 @@ FIFR was chosen based on the following motivations:
 - FIFR introduces feature-aware routing that promotes message passing along semantically meaningful paths. This improves generalization in cases where topology alone is insufficient or misleading.
 - Unlike attention-based GNNs that modify structure per layer, FIFR directly reweights the diffusion kernel in a lightweight and scalable manner, preserving the benefits of global propagation while increasing selectivity.
 
-We acknowledge that in some benchmarks (e.g., Cora or Citeseer), the performance improvements appear moderate. We attribute this to the fact that these datasets are homophilic and already well-handled by existing methods. However, as shown in Table3 and Table4, CGDConv yields more substantial gains in challenging or heterophilic graphs, such as Chameleon, Squirrel, and Actor. This supports our claim that CGDConv (especially with FIFR) is most beneficial when structure and semantics are misaligned.
+We acknowledge that in some benchmarks (e.g., Cora or Citeseer), the performance improvements appear moderate. We attribute this to the fact that these datasets are homophilic and already well-handled by existing methods. However, as shown in Table2, Table3 and Table6, CGDConv yields more substantial gains in challenging or heterophilic graphs, such as Chameleon, Squirrel, and Actor. This supports our claim that CGDConv (especially with FIFR) is most beneficial when structure and semantics are misaligned.
 
 More details in **Figure Re.1**.
 
