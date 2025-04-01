@@ -9,7 +9,7 @@ We respectfully clarify that our approach does not merely combine GDC with FIFR.
 
 Only after establishing this new constrained diffusion mechanism, we integrate it with Feature Information Flow Routing (FIFR) as an enhancement module. Our goal with FIFR is to further improve feature-level guidance during diffusion, especially in graphs with complex semantics. However, the core contribution lies in the constrained diffusion formulation itself, rather than in a simple architectural combination.
 
-Furthermore, compared to Adaptive Diffusion Convolution (ADC)-style methods, CGDConv offers several key advantages:
+Furthermore, compared to Adaptive Diffusion Convolution (ADC), CGDConv offers several key advantages:
 
 - Parameter-free diffusion control: While ADC usually needs to learn to continuously update the parameters of each channel during the diffusion process to achieve adaptive diffusion, our method can infer the appropriate diffusion range from the graph structure itself, and no additional parameter updates are required after inserting GNNs.
 - Saturation-aware adaptivity: CGDConv introduces a principled, empirical convergence criterion based on the growth of nonzero entries in the diffusion kernel $\delta_t$, providing a more transparent and theoretically grounded stopping mechanism than truncations used in ADC.
