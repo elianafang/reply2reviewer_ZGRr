@@ -5,7 +5,7 @@ The approach seems reasonable in the context of graph-based learning, where diff
 # A1:
 We appreciate the reviewer’s thoughtful feedback and the opportunity to clarify our contributions.
 
-We respectfully clarify that our approach does not merely combine GDC with FIFR. Instead, we propose a novel extension of the GDC framework, termed Constrained Graph Diffusion (CGD) (Section 3.1), which introduces a new mechanism to dynamically control the diffusion depth via the saturation-aware metric $\delta_t$ and constraint factor $\beta = 2K_0$. This modification directly addresses limitations of prior GDC-like methods, including over-diffusion, and inefficient global information propagation.
+We respectfully clarify that our approach does not merely combine GDC with FIFR. Instead, we propose a novel extension of the GDC framework, termed Constrained Graph Diffusion (CD) (Section 3.1), which introduces a new mechanism to dynamically control the diffusion depth via the saturation-aware metric $\delta_t$ and constraint factor $\beta = 2K_0$. This modification directly addresses limitations of prior GDC-like methods, including over-diffusion, and inefficient global information propagation.
 
 Only after establishing this new constrained diffusion mechanism, we integrate it with Feature Information Flow Routing (FIFR) as an enhancement module. Our goal with FIFR is to further improve feature-level guidance during diffusion, especially in graphs with complex semantics. However, the core contribution lies in the constrained diffusion formulation itself, rather than in a simple architectural combination.
 
@@ -61,7 +61,7 @@ The performance improvements reported in some experiments appear relatively smal
 # A4:
 We thank the reviewer for raising these insightful points regarding the role of FIFR and the observed performance margins.
 
-First, we would like to clarify that FIFR is not the mechanism for controlling the diffusion depth—that is the role of our Constrained Graph Diffusion (CGD) module, which dynamically halts diffusion via a saturation-aware stopping criterion $\delta_t = 0$ and constraint factor $\beta = 2K_0$ (Section 3.1). FIFR operates *on top of* the constrained diffusion to modulate *how* information flows, not *how far* it spreads.
+First, we would like to clarify that FIFR is not the mechanism for controlling the diffusion depth—that is the role of our Constrained Graph Diffusion (CD) module, which dynamically halts diffusion via a saturation-aware stopping criterion $\delta_t = 0$ and constraint factor $\beta = 2K_0$ (Section 3.1). FIFR operates *on top of* the constrained diffusion to modulate *how* information flows, not *how far* it spreads.
 
 FIFR was chosen based on the following motivations:
 
