@@ -1,5 +1,8 @@
 ### 😊We are grateful for your valuable review comments and take this opportunity to address your concerns with careful consideration.
 
+(🕙Some Figures take time to load)
+
+
 # Q1:
 The approach seems reasonable in the context of graph-based learning, where diffusion processes are often used to capture global relationships. However, the novelty of the proposed method is somewhat limited, as it primarily adapts the existing Graph Diffusion Convolution (GDC) with FIFR. While this integration could be valuable, the motivation for using FIFR in this context is not explained in sufficient detail. The paper would benefit from a clearer justification for why this specific modification to GDC was chosen and what unique benefits FIFR provides over previous approaches.
 
