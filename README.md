@@ -1,9 +1,11 @@
+### 😊We are grateful for your valuable review comments and take this opportunity to address your concerns with careful consideration.
+
 # Q1:
 The approach seems reasonable in the context of graph-based learning, where diffusion processes are often used to capture global relationships. However, the novelty of the proposed method is somewhat limited, as it primarily adapts the existing Graph Diffusion Convolution (GDC) with FIFR. While this integration could be valuable, the motivation for using FIFR in this context is not explained in sufficient detail. The paper would benefit from a clearer justification for why this specific modification to GDC was chosen and what unique benefits FIFR provides over previous approaches.
 
 
 # A1:
-We sincerely appreciate your thoughtful review comments and the opportunity to clarify and strengthen our work.
+😊We sincerely appreciate your thoughtful review comments and the opportunity to clarify and strengthen our work.
 
 We respectfully clarify that our approach does **not merely combine GDC with FIFR. Instead, we propose a novel extension of the GDC framework, termed Constrained Graph Diffusion (CD) (👉Section 3.1**), which introduces a new mechanism to dynamically control the diffusion depth via the saturation-aware metric $\delta_t$ and constraint factor $\beta = 2K_0$. **This modification directly addresses limitations of prior GDC-like methods, including over-diffusion, and inefficient global information propagation.**
 
@@ -36,7 +38,7 @@ The motivation for applying FIFR to this problem is not fully articulated, and a
 
 # A2:
 
-We are grateful for your valuable comments and take this opportunity to address your concerns with careful consideration.
+😊We are grateful for your valuable comments and take this opportunity to address your concerns with careful consideration.
 
 We thank the reviewer for pointing out the need for a more rigorous theoretical treatment of FIFR. **We agree that beyond intuitive motivation, it is important to provide formal analysis to support its validity and convergence behavior.**
 
@@ -48,6 +50,8 @@ Thank you again for your constructive suggestion, which helped us significantly 
 The experimental setup is comprehensive, but there are a few areas where additional considerations could enhance the results. For instance, the datasets used in the paper, while adequate, are somewhat small, and larger datasets (such as OGBN-Arxiv) could provide a more thorough evaluation of the method. Additionally, the authors could explore the impact of temporal factors, such as training time and inference speed, on model performance.
 
 # A3:
+😊We are grateful for your valuable comments and take this opportunity to address your concerns with careful consideration.
+
 We fully agree that evaluating on larger and more challenging datasets like OGB is important. In response, we attempted to run CGDConv on **OGB-arxiv**, and encountered a critical scalability bottleneck due to the size of the diffusion matrix. Specifically, computing the PPR-based diffusion matrix involves inverting a $169,343 \times 169,343$ adjacency matrix, which requires approximately **118GB of memory**. This leads to a silent failure on standard hardware: the process terminates without error output, as shown in the attached runtime log (👉**see Figure Re.3**). The Python process exceeds the memory limit, the operating system will directly terminate the process without throwing a Python exception. The "adj matrix over" you see is the last successfully executed step, after which the process is killed by the system.
 
 **This issue is not specific to our model.** It arises from the matrix inversion operation commonly used in diffusion-based models like GDC and ADC, which are also not scalable to such graph sizes without approximation. We acknowledge that handling large-scale graphs remains a crucial open challenge and plan to investigate efficient and scalable solutions (e.g., sparsified diffusion, Monte Carlo estimation) in future work.  
@@ -61,9 +65,9 @@ We fully agree that evaluating on larger and more challenging datasets like OGB 
 Can the authors clarify why FIFR was chosen as the method for controlling the diffusion process in CGDConv? How does it improve upon existing methods, and could other techniques have been more effective?
 The performance improvements reported in some experiments appear relatively small. Could the authors provide additional insights into the potential limitations of CGDConv, particularly in heterogeneous graph settings?
 # A4:
-We thank the reviewer for raising these insightful points regarding the role of FIFR and the observed performance margins.
+😊We sincerely appreciate your thoughtful review comments and the opportunity to clarify and strengthen our work.
 
-First, we would like to clarify that FIFR is not the mechanism for controlling the diffusion depth—that is the role of our Constrained Graph Diffusion (CD) module, which dynamically halts diffusion via a saturation-aware stopping criterion $\delta_t = 0$ and constraint factor $\beta = 2K_0$ (Section 3.1). FIFR operates *on top of* the constrained diffusion to modulate *how* information flows, not how far it spreads.
+First, we would like to clarify that FIFR is not the mechanism for controlling the diffusion depth—that is the role of our Constrained Graph Diffusion (CD) module, which dynamically halts diffusion via a saturation-aware stopping criterion $\delta_t = 0$ and constraint factor $\beta = 2K_0$ (**👉Section 3.1**). FIFR operates *on top of* the constrained diffusion to modulate *how* information flows, not how far it spreads.
 
 FIFR was chosen based on the following motivations:
 
@@ -81,3 +85,5 @@ Finally, we agree that no method is universally optimal. While CGDConv shows con
 - In purely homophilic graphs, where features align with edges, the additional modulation by FIFR may offer diminishing returns.
 
 Thank you again for your thoughtful reviews😊.
+
+### 😊We truly appreciate your constructive feedback and hope that our detailed responses and updates will help you reevaluate our work.
