@@ -89,4 +89,4 @@ Finally, we agree that no method is universally optimal. While CGDConv shows con
 
 Thank you again for your thoughtful reviews😊.
 
-### 😊We truly appreciate your constructive feedback and hope that our detailed responses and updates will help you reevaluate our work.
+### 😊We truly appreciate your constructive reviews and hope that our detailed responses and updates will help you reevaluate our work.
